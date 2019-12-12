@@ -223,6 +223,7 @@ Route::prefix('users')->group(function (){
 //    dd($user);
 //
 //});
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['verify' => true]);
@@ -239,3 +240,15 @@ Route::get('/admin',function(){
 //Route::get('/session',function (\Illuminate\Http\Request $request){
 //    return $request->session()->all();
 //});
+Route::prefix('fa')->group(function (){
+    App::setlocale('fa');
+    Route::get('/message',function (){
+        return view('message');
+    });
+    Route::get('fa-message',function (){
+       if (App::islocale('fa')){
+           echo 'سلام';
+       }
+    });
+});
+
